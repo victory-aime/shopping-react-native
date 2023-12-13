@@ -1,7 +1,8 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import {faShop} from '@fortawesome/free-solid-svg-icons';
+import {faShop, faPlus, faClipboard} from '@fortawesome/free-solid-svg-icons';
+import {CustomButton, CardContainer, IconContainer} from '../index';
 
 const ShopDetails = ({
   title,
@@ -10,27 +11,98 @@ const ShopDetails = ({
   labelColor,
   residue,
 }: any) => {
+  const [isPressed, setIsPressed] = useState(false);
+
+  const handlePress = () => {
+    setIsPressed(!isPressed);
+  };
+
+  const handleButton1Press = () => {
+    // Add your logic for the first button press
+  };
+
+  const handleButton2Press = () => {
+    // Add your logic for the second button press
+  };
+
   return (
-    <View style={styles.container}>
-      <View style={styles.rowContainer}>
-        <View style={styles.shopContainer}>
-          <FontAwesomeIcon icon={faShop} size={20} color="white" />
+    <TouchableOpacity onPress={handlePress}>
+      <CardContainer
+        backgroundColor={isPressed ? '#5775CD' : '#F4F8FB'}
+        padding={10}
+        margin={10}
+        borderRadius={10}>
+        <View style={styles.rowContainer}>
+          <IconContainer
+            style={styles.shopContainer}
+            backgroundColor={isPressed ? 'white' : '#5775CD'}>
+            <FontAwesomeIcon
+              icon={faShop}
+              size={20}
+              color={isPressed ? '#5775CD' : 'white'}
+            />
+          </IconContainer>
+
+          <View style={styles.textContainer}>
+            <Text
+              style={[
+                styles.titleStyle,
+                {color: isPressed ? 'white' : '#0B1527'},
+              ]}>
+              {title}
+            </Text>
+          </View>
         </View>
-        <View style={styles.textContainer}>
-          <Text style={styles.titleStyle}>{title}</Text>
+        <View style={styles.descriptionContainer}>
+          <Text
+            style={[
+              styles.descriptionStyle,
+              {color: isPressed ? 'white' : '#0B1527'},
+            ]}>
+            {description}
+          </Text>
         </View>
-      </View>
-      <View style={styles.descriptionContainer}>
-        <Text style={styles.descriptionStyle}>{description}</Text>
-      </View>
-      <View style={styles.divider}></View>
-      <View style={styles.rowContainer}>
-        <Text style={[styles.labelStyle, {color: labelColor}]}>Residue:</Text>
-        <Text style={[styles.valueStyle, {color: residueColor}]}>
-          {residue}
-        </Text>
-      </View>
-    </View>
+        {isPressed && (
+          <>
+            <View style={styles.buttonContainer}>
+              <View style={{marginRight: 16}}>
+                <CustomButton
+                  onPress={handleButton1Press}
+                  label="Add product "
+                  backgroundColor="rgba(255, 255, 255, 0.15)"
+                  textColor="#fff"
+                  icon={faPlus}
+                />
+              </View>
+              <CustomButton
+                onPress={handleButton2Press}
+                label="Orders history"
+                backgroundColor="rgba(255, 255, 255, 0.15)"
+                textColor="#fff"
+                icon={faClipboard}
+              />
+            </View>
+          </>
+        )}
+        <View style={styles.divider}></View>
+        <View style={styles.rowContainer}>
+          <Text
+            style={[
+              styles.labelStyle,
+              {color: isPressed ? 'white' : labelColor},
+            ]}>
+            Residue:
+          </Text>
+          <Text
+            style={[
+              styles.valueStyle,
+              {color: isPressed ? 'white' : residueColor},
+            ]}>
+            {residue}
+          </Text>
+        </View>
+      </CardContainer>
+    </TouchableOpacity>
   );
 };
 
@@ -106,6 +178,18 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     textAlign: 'left',
     color: '#0B1527',
+  },
+  buttonContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    padding: 4,
+  },
+
+  buttonText: {
+    color: '#5775CD',
+    fontWeight: 'bold',
   },
 });
 

@@ -2,13 +2,14 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
+import {CardContainer} from '../index';
 
 interface NotificationDetailsProps {
   title: string;
   description: string;
   containerColor: string;
   labelColor?: string;
-  showIcon?: boolean; // New prop for controlling icon visibility
+  showIcon?: boolean;
 }
 const NotificationDetails: React.FC<NotificationDetailsProps> = ({
   title,
@@ -18,9 +19,13 @@ const NotificationDetails: React.FC<NotificationDetailsProps> = ({
   showIcon = true,
 }) => {
   return (
-    <View style={[styles.container, {backgroundColor: containerColor}]}>
+    <CardContainer
+      padding={10}
+      margin={10}
+      borderRadius={10}
+      backgroundColor={containerColor}>
       <View style={styles.rowContainer}>
-        {showIcon && ( // Conditionally render the icon based on the prop
+        {showIcon && (
           <View style={[styles.CircleContainer]}>
             <FontAwesomeIcon icon={faCircle} size={20} color={labelColor} />
           </View>
@@ -32,18 +37,11 @@ const NotificationDetails: React.FC<NotificationDetailsProps> = ({
       <View style={styles.descriptionContainer}>
         <Text style={styles.descriptionStyle}>{description}</Text>
       </View>
-    </View>
+    </CardContainer>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#F4F8FB',
-    padding: 10,
-    margin: 10,
-    borderRadius: 10,
-  },
-
   rowContainer: {
     flexDirection: 'row',
     alignItems: 'center',

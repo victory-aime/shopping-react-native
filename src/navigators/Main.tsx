@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {GetStarted} from '../screen';
+import {GetStarted, Notification} from '../screen';
 import {MainParamsList} from '../../@types/navigation';
 import {StatusBar} from 'react-native';
 import TabNavigators from './TabNavigators';
@@ -22,7 +22,7 @@ const MainNavigator = () => {
           name="GetStarted"
           component={GetStarted}
         />
-        <Stack.Screen name="Tabs" component={TabNavigators} />
+        <Stack.Screen name="Notification" component={Notification} />
       </Stack.Navigator>
     </>
   );

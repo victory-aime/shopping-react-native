@@ -3,10 +3,12 @@ import {StackScreenProps} from '@react-navigation/stack';
 
 export type MainParamsList = {
   GetStarted: undefined;
-  Home: undefined;
+  HomeStack: undefined;
   Notification: undefined;
+  Home: undefined;
   test: undefined;
   test2: undefined;
+  Settings: undefined;
 };
 export type AuthParamsList = {
   Login: undefined;
@@ -16,7 +18,6 @@ export type AuthParamsList = {
 export type ApplicationStackParamList = {
   Main: NavigatorScreenParams<MainParamsList>;
   Auth: NavigatorScreenParams<AuthParamsList>;
-  Tabs: undefined;
 };
 
 export type ApplicationScreenProps =

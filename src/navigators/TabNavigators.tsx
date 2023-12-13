@@ -1,16 +1,16 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomeScreen, Notification} from '../screen';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {
   faUserGroup,
   faShop,
   faClipboard,
-  faBell,
+  faCog,
 } from '@fortawesome/free-solid-svg-icons';
 import {MainParamsList} from '../../@types/navigation';
 import {StatusBar} from 'react-native';
 import {CustomHeader, NotificationHeader} from '../components';
+import {HomeStack} from './index';
 
 const Tab = createBottomTabNavigator<MainParamsList>();
 
@@ -41,7 +41,7 @@ const TabNavigators = () => {
           tabBarIcon: ({color, size}) => {
             let icon;
 
-            if (route.name === 'Home') {
+            if (route.name === 'HomeStack') {
               icon = (
                 <FontAwesomeIcon icon={faUserGroup} size={size} color={color} />
               );
@@ -53,10 +53,8 @@ const TabNavigators = () => {
               icon = (
                 <FontAwesomeIcon icon={faClipboard} size={size} color={color} />
               );
-            } else if (route.name === 'Notification') {
-              icon = (
-                <FontAwesomeIcon icon={faBell} size={size} color={color} />
-              );
+            } else if (route.name === 'Settings') {
+              icon = <FontAwesomeIcon icon={faCog} size={size} color={color} />;
             }
 
             return icon;
@@ -66,13 +64,25 @@ const TabNavigators = () => {
           activeTintColor: '#5775CD',
           inactiveTintColor: '#9094B8',
         }}>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="test" component={HomeScreen} />
-        <Tab.Screen name="test2" component={HomeScreen} />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="HomeStack"
+          component={HomeStack}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="test"
+          component={HomeStack}
+        />
+        <Tab.Screen
+          options={{headerShown: false}}
+          name="test2"
+          component={HomeStack}
+        />
         <Tab.Screen
           options={{header: () => <NotificationHeader />}}
-          name="Notification"
-          component={Notification}
+          name="Settings"
+          component={HomeStack}
         />
       </Tab.Navigator>
     </>

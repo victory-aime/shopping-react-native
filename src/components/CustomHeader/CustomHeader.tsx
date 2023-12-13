@@ -2,8 +2,18 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {SearchContainer} from '../../components';
 
-const CustomHeader = () => {
-  const [textSearch, setTextSearch] = useState('bonsoir');
+interface CustomHeaderProps {
+  onSearch?: (text: string) => void;
+}
+
+const CustomHeader: React.FC<CustomHeaderProps> = ({onSearch}) => {
+  const [textSearch, setTextSearch] = useState('');
+
+  const handleSearch = () => {
+    if (onSearch) {
+      onSearch(textSearch);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -11,6 +21,7 @@ const CustomHeader = () => {
         onChangeText={setTextSearch}
         value={textSearch}
         placeholder="Search..."
+        onSearch={handleSearch}
       />
     </View>
   );
@@ -20,7 +31,6 @@ const styles = StyleSheet.create({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    gap: 16,
     paddingHorizontal: 20,
     paddingVertical: 8,
     paddingTop: 20,
