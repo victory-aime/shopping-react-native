@@ -1,28 +1,45 @@
-import React from 'react';
-import {StyleSheet, TouchableOpacity, Text} from 'react-native';
+import React, {ReactNode} from 'react';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  ViewStyle,
+  StyleProp,
+  TextStyle,
+} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
 interface CustomButtonProps {
   onPress: () => void;
-  label: string;
-  backgroundColor: string;
-  textColor: string;
+  backgroundColor?: string;
+  textColor?: string;
   disabled?: boolean;
   icon?: IconProp | null;
+  children?: ReactNode;
+  style?: StyleProp<ViewStyle & React.CSSProperties>;
+  textStyles?: StyleProp<TextStyle>;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   onPress,
-  label,
   backgroundColor,
   textColor,
   disabled,
   icon,
+  style,
+  children,
+  textStyles,
 }) => {
+  const containerStyle = [
+    styles.customButton,
+    backgroundColor && {backgroundColor},
+    style && (Array.isArray(style) ? style : [style]),
+  ];
+
   return (
     <TouchableOpacity
-      style={[styles.customButton, {backgroundColor}]}
+      style={containerStyle}
       onPress={onPress}
       disabled={disabled}>
       {icon && (
@@ -33,7 +50,9 @@ const CustomButton: React.FC<CustomButtonProps> = ({
           style={styles.icon}
         />
       )}
-      <Text style={[styles.buttonText, {color: textColor}]}>{label}</Text>
+      <Text style={[styles.buttonText, {color: textColor}, textStyles]}>
+        {children}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -48,6 +67,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#5775CD',
   },
   buttonText: {
     fontSize: 18,

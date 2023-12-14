@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faShop, faPlus, faClipboard} from '@fortawesome/free-solid-svg-icons';
 import {CustomButton, CardContainer, IconContainer} from '../index';
+import {useNavigation} from '@react-navigation/native';
 
 const ShopDetails = ({
   title,
@@ -12,13 +13,14 @@ const ShopDetails = ({
   residue,
 }: any) => {
   const [isPressed, setIsPressed] = useState(false);
-
+  const navigation = useNavigation();
   const handlePress = () => {
     setIsPressed(!isPressed);
   };
 
   const handleButton1Press = () => {
-    // Add your logic for the first button press
+    // @ts-ignore
+    navigation.navigate('ProductList');
   };
 
   const handleButton2Press = () => {
@@ -34,12 +36,12 @@ const ShopDetails = ({
         borderRadius={10}>
         <View style={styles.rowContainer}>
           <IconContainer
-            style={styles.shopContainer}
-            backgroundColor={isPressed ? 'white' : '#5775CD'}>
+            backgroundColor={isPressed ? '#F4F8FB' : '#5775CD'}
+            style={styles.shopContainer}>
             <FontAwesomeIcon
               icon={faShop}
               size={20}
-              color={isPressed ? '#5775CD' : 'white'}
+              color={isPressed ? '#5775CD' : '#F4F8FB'}
             />
           </IconContainer>
 
@@ -68,19 +70,21 @@ const ShopDetails = ({
               <View style={{marginRight: 16}}>
                 <CustomButton
                   onPress={handleButton1Press}
-                  label="Add product "
                   backgroundColor="rgba(255, 255, 255, 0.15)"
                   textColor="#fff"
                   icon={faPlus}
-                />
+                  textStyles={{fontSize: 18}}>
+                  Add product
+                </CustomButton>
               </View>
               <CustomButton
-                onPress={handleButton2Press}
-                label="Orders history"
+                onPress={handleButton1Press}
                 backgroundColor="rgba(255, 255, 255, 0.15)"
                 textColor="#fff"
                 icon={faClipboard}
-              />
+                textStyles={{fontSize: 18}}>
+                Orders history
+              </CustomButton>
             </View>
           </>
         )}
@@ -127,7 +131,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 8,
     padding: 15,
-    backgroundColor: '#5775CD',
   },
 
   textContainer: {

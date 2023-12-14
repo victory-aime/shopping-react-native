@@ -1,0 +1,32 @@
+export const productList = [
+  {
+    id: 1123,
+    title: 'Banana Chips - lorem ipsum dolor sit amet, consectetur',
+    date: 'EXP date: 23.05.2025',
+    residue: '799 141 TMT',
+    quantity: '455',
+    residueColor: '#0B1527',
+    labelColor: '#FF004B',
+    image: require('../assets/images/camera.png'),
+  },
+  {
+    id: 1124,
+    title: 'Banana Chips - lorem ipsum dolor sit amet, consectetur',
+    date: 'EXP date: 23.05.2025',
+    residue: '455 800 TMT',
+    quantity: '12',
+    residueColor: '#0B1527',
+    labelColor: '#FF004B',
+    image: require('../assets/images/casque.png'),
+  },
+  {
+    id: 1125,
+    title: 'Banana Chips - lorem ipsum dolor sit amet, consectetur',
+    date: 'EXP date: 23.05.2025',
+    residue: '15 800 TMT',
+    quantity: '48',
+    residueColor: '#0B1527',
+    labelColor: '#FF004B',
+    image: require('../assets/images/sac.png'),
+  },
+];

@@ -114,12 +114,13 @@ const RegisterScreen = ({navigation}: any) => {
                     {touched.password && errors.password && (
                       <Text style={styles.errorText}>{errors.password}</Text>
                     )}
+
                     <CustomButton
                       onPress={handleSubmit}
-                      label="Sign Up"
-                      backgroundColor="#5775CD"
-                      textColor="#FFF"
-                    />
+                      textColor="#fff"
+                      textStyles={{fontSize: 18}}>
+                      Sign Up
+                    </CustomButton>
 
                     <View style={styles.signUp}>
                       <Text
@@ -158,6 +159,7 @@ export default RegisterScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: '100%',
     backgroundColor: '#5775CD',
   },
   headerStyle: {

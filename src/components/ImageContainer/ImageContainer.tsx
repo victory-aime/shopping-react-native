@@ -1,7 +1,7 @@
 import {StyleProp, View, ViewStyle} from 'react-native';
 import React, {ReactNode} from 'react';
 
-interface CardContainerProps {
+interface ImageContainerProps {
   backgroundColor?: string;
   padding?: number;
   margin?: number;
@@ -12,7 +12,7 @@ interface CardContainerProps {
   style?: StyleProp<ViewStyle & React.CSSProperties>;
 }
 
-const CardContainer: React.FC<CardContainerProps> = ({
+const ImageContainer: React.FC<ImageContainerProps> = ({
   backgroundColor,
   padding,
   margin,
@@ -38,4 +38,4 @@ const CardContainer: React.FC<CardContainerProps> = ({
   );
 };
 
-export default CardContainer;
+export default ImageContainer;

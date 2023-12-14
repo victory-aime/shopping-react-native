@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native';
+import {CustomButton} from '../../components';
 
 const GetStarted = ({navigation}: any) => {
   return (
@@ -23,11 +24,14 @@ const GetStarted = ({navigation}: any) => {
           This is just a simple app for training. Let's get started and enjoy!
         </Text>
       </View>
-      <TouchableOpacity
+      <CustomButton
+        onPress={() => navigation.navigate('Auth', {screen: 'Login'})}
+        textColor="#fff"
+        disabled={false}
         style={styles.buttonStyles}
-        onPress={() => navigation.navigate('Auth', {screen: 'Login'})}>
-        <Text style={{color: 'white', fontSize: 18}}>Get Started</Text>
-      </TouchableOpacity>
+        textStyles={{fontSize: 18}}>
+        Get Started
+      </CustomButton>
     </SafeAreaView>
   );
 };

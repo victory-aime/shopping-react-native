@@ -8,6 +8,7 @@ import {
   faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import {useNavigation} from '@react-navigation/native';
+import {IconContainer} from '../index';
 
 interface SearchProps {
   value: string;
@@ -87,11 +88,12 @@ const SearchContainer: React.FC<SearchProps> = ({
         ) : null}
       </View>
       {isInputFocused ? null : (
-        <TouchableOpacity onPress={handleBellPress}>
-          <View style={styles.bellContainer}>
-            <FontAwesomeIcon icon={faBell} size={20} color="white" />
-          </View>
-        </TouchableOpacity>
+        <IconContainer
+          onPress={handleBellPress}
+          backgroundColor="#5775CD"
+          style={styles.bellContainer}>
+          <FontAwesomeIcon icon={faBell} size={20} color="white" />
+        </IconContainer>
       )}
     </View>
   );
@@ -125,7 +127,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     borderRadius: 8,
     padding: 15,
-    backgroundColor: '#5775CD',
   },
   ArrowContainer: {
     display: 'flex',

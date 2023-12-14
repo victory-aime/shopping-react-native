@@ -9,7 +9,11 @@ import {
   ScrollView,
 } from 'react-native';
 import {Formik} from 'formik';
-import {TextInputContainer, CustomButton} from '../../components';
+import {
+  TextInputContainer,
+  CustomButton,
+  CardContainer,
+} from '../../components';
 import CheckBox from '@react-native-community/checkbox';
 import {LoginSchema} from '../../validators';
 import Toast from 'react-native-toast-message';
@@ -30,7 +34,7 @@ const LoginScreen = ({navigation}: any) => {
     if (loginSuccessful) {
       Toast.show({
         type: 'success',
-        position: 'bottom',
+        position: 'top',
         text1: 'Login Successful',
         visibilityTime: 3000,
       });
@@ -52,14 +56,20 @@ const LoginScreen = ({navigation}: any) => {
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <CardContainer style={styles.container} backgroundColor="#5775CD">
       <View style={styles.headerStyle}>
         <Text style={styles.textLoginStyle}>Login</Text>
       </View>
 
       <KeyboardAvoidingView behavior="position">
-        <View style={styles.transparentContainer}>
-          <View style={styles.effect}></View>
+        <CardContainer
+          style={styles.transparentContainer}
+          backgroundColor="none">
+          <CardContainer
+            style={styles.effect}
+            width={SCREEN_WIDTH - 16}
+            height={200}
+            backgroundColor="white"></CardContainer>
 
           <Formik
             initialValues={{
@@ -110,10 +120,11 @@ const LoginScreen = ({navigation}: any) => {
                   </View>
                   <CustomButton
                     onPress={handleSubmit}
-                    label="Login"
-                    backgroundColor="#5775CD"
-                    textColor="#FFF"
-                  />
+                    textColor="#fff"
+                    disabled={false}
+                    textStyles={{fontSize: 18}}>
+                    Login
+                  </CustomButton>
 
                   <View style={styles.signUp}>
                     <Text
@@ -140,9 +151,9 @@ const LoginScreen = ({navigation}: any) => {
           </Formik>
 
           <Toast ref={ref => Toast.setRef(ref)} />
-        </View>
+        </CardContainer>
       </KeyboardAvoidingView>
-    </ScrollView>
+    </CardContainer>
   );
 };
 
@@ -151,7 +162,6 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#5775CD',
   },
   headerStyle: {
     alignItems: 'center',
@@ -179,13 +189,10 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   effect: {
-    backgroundColor: 'white',
     opacity: 0.5,
     position: 'absolute',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    width: SCREEN_WIDTH - 16,
-    height: 200,
     right: 8,
     marginHorizontal: 'auto',
   },

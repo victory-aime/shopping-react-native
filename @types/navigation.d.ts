@@ -6,6 +6,7 @@ export type MainParamsList = {
   HomeStack: undefined;
   Notification: undefined;
   Home: undefined;
+  ProductList: undefined;
   test: undefined;
   test2: undefined;
   Settings: undefined;

@@ -3,6 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCircle} from '@fortawesome/free-solid-svg-icons';
 import {CardContainer} from '../index';
+import IconContainer from '../IconContainer/IconContainer';
 
 interface NotificationDetailsProps {
   title: string;
@@ -26,9 +27,9 @@ const NotificationDetails: React.FC<NotificationDetailsProps> = ({
       backgroundColor={containerColor}>
       <View style={styles.rowContainer}>
         {showIcon && (
-          <View style={[styles.CircleContainer]}>
+          <IconContainer style={styles.CircleContainer}>
             <FontAwesomeIcon icon={faCircle} size={20} color={labelColor} />
-          </View>
+          </IconContainer>
         )}
         <View style={styles.textContainer}>
           <Text style={styles.titleStyle}>{title}</Text>

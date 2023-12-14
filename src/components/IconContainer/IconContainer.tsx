@@ -1,8 +1,8 @@
-import {View, ViewStyle, StyleProp} from 'react-native';
+import {View, ViewStyle, StyleProp, TouchableOpacity} from 'react-native';
 import React, {ReactNode} from 'react';
 
 interface IconContainerProps {
-  backgroundColor: string;
+  backgroundColor?: string;
   padding?: number;
   margin?: number;
   borderRadius?: number;
@@ -12,6 +12,7 @@ interface IconContainerProps {
   justifyContent?: ViewStyle['justifyContent'];
   marginRight?: number;
   marginLeft?: number;
+  onPress?: () => void;
   children?: ReactNode;
   style?: StyleProp<ViewStyle & React.CSSProperties>;
 }
@@ -27,11 +28,15 @@ const IconContainer: React.FC<IconContainerProps> = ({
   justifyContent,
   marginRight,
   marginLeft,
+  onPress,
   children,
   style,
 }) => {
+  const ContainerComponent = onPress ? TouchableOpacity : View;
+
   return (
-    <View
+    <ContainerComponent
+      onPress={onPress}
       style={{
         backgroundColor,
         padding,
@@ -46,7 +51,7 @@ const IconContainer: React.FC<IconContainerProps> = ({
         ...(style as object),
       }}>
       {children}
-    </View>
+    </ContainerComponent>
   );
 };
 

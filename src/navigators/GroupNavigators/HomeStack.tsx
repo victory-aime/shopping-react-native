@@ -1,8 +1,9 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {MainParamsList} from '../../../@types/navigation';
 import {HomeScreen, Notification} from '../../screen';
-import {NotificationHeader} from '../../components';
+import {NotificationHeader, ProductHeader} from '../../components';
 import React from 'react';
+import ProductList from '../../screen/Home/ProductList';
 
 const Stack = createNativeStackNavigator<MainParamsList>();
 
@@ -19,6 +20,11 @@ const HomeStack = () => {
           options={{header: () => <NotificationHeader />}}
           name="Notification"
           component={Notification}
+        />
+        <Stack.Screen
+          options={{header: () => <ProductHeader />}}
+          name="ProductList"
+          component={ProductList}
         />
       </Stack.Navigator>
     </>

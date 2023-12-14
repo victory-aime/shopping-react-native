@@ -54,10 +54,10 @@ const HomeScreen = () => {
         <View style={styles.clearSearch}>
           <CustomButton
             onPress={clearSearch}
-            label="Clear Search"
             backgroundColor="#5775CD"
-            textColor="white"
-          />
+            textColor="white">
+            Clear Search
+          </CustomButton>
         </View>
       ) : null}
     </ScrollView>
