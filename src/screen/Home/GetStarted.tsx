@@ -1,10 +1,4 @@
-import {
-  ImageBackground,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native';
 import {CustomButton} from '../../components';
@@ -25,7 +19,7 @@ const GetStarted = ({navigation}: any) => {
         </Text>
       </View>
       <CustomButton
-        onPress={() => navigation.navigate('Auth', {screen: 'Login'})}
+        onPress={() => navigation.replace('Auth', {screen: 'Login'})}
         textColor="#fff"
         disabled={false}
         style={styles.buttonStyles}

@@ -22,7 +22,6 @@ const MainNavigator = () => {
           name="GetStarted"
           component={GetStarted}
         />
-        <Stack.Screen name="Notification" component={Notification} />
       </Stack.Navigator>
     </>
   );

@@ -41,7 +41,7 @@ const LoginScreen = ({navigation}: any) => {
 
       resetForm();
       setTimeout(() => {
-        navigation.navigate('Tabs');
+        navigation.replace('Tabs', {screen: 'HomeStack'});
       }, 2000);
     } else {
       Toast.show({
