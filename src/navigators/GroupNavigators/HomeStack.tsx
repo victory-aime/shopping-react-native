@@ -9,25 +9,23 @@ const Stack = createNativeStackNavigator<MainParamsList>();
 
 const HomeStack = () => {
   return (
-    <>
-      <Stack.Navigator screenOptions={{headerShown: true}}>
-        <Stack.Screen
-          options={{headerShown: false}}
-          name="Home"
-          component={HomeScreen}
-        />
-        <Stack.Screen
-          options={{header: () => <NotificationHeader />}}
-          name="Notification"
-          component={Notification}
-        />
-        <Stack.Screen
-          options={{header: () => <ProductHeader />}}
-          name="ProductList"
-          component={ProductList}
-        />
-      </Stack.Navigator>
-    </>
+    <Stack.Navigator screenOptions={{headerShown: true}}>
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="Home"
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        options={{header: () => <NotificationHeader />}}
+        name="Notification"
+        component={Notification}
+      />
+      <Stack.Screen
+        options={{headerShown: false}}
+        name="ProductList"
+        component={ProductList}
+      />
+    </Stack.Navigator>
   );
 };
 

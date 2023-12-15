@@ -67,7 +67,7 @@ const ShopDetails = ({
         {isPressed && (
           <>
             <View style={styles.buttonContainer}>
-              <View style={{marginRight: 16}}>
+              <View style={{marginRight: 16, marginTop: 30}}>
                 <CustomButton
                   onPress={handleButton1Press}
                   backgroundColor="rgba(255, 255, 255, 0.15)"
@@ -82,7 +82,8 @@ const ShopDetails = ({
                 backgroundColor="rgba(255, 255, 255, 0.15)"
                 textColor="#fff"
                 icon={faClipboard}
-                textStyles={{fontSize: 18}}>
+                textStyles={{fontSize: 18}}
+                style={{marginTop: 30}}>
                 Orders history
               </CustomButton>
             </View>

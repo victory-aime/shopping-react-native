@@ -116,6 +116,7 @@ const RegisterScreen = ({navigation}: any) => {
                     )}
 
                     <CustomButton
+                      style={{marginTop: 30}}
                       onPress={handleSubmit}
                       textColor="#fff"
                       textStyles={{fontSize: 18}}>

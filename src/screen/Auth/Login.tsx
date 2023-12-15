@@ -122,7 +122,8 @@ const LoginScreen = ({navigation}: any) => {
                     onPress={handleSubmit}
                     textColor="#fff"
                     disabled={false}
-                    textStyles={{fontSize: 18}}>
+                    textStyles={{fontSize: 18}}
+                    style={{marginTop: 30}}>
                     Login
                   </CustomButton>
 

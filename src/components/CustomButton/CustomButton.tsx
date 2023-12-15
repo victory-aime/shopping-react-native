@@ -11,7 +11,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {IconProp} from '@fortawesome/fontawesome-svg-core';
 
 interface CustomButtonProps {
-  onPress: () => void;
+  onPress?: () => void;
   backgroundColor?: string;
   textColor?: string;
   disabled?: boolean;
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    marginTop: 30,
+
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#5775CD',

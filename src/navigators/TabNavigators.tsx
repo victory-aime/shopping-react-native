@@ -7,12 +7,12 @@ import {
   faClipboard,
   faCog,
 } from '@fortawesome/free-solid-svg-icons';
-import {MainParamsList} from '../../@types/navigation';
+import {TabSParamsList} from '../../@types/navigation';
 import {StatusBar} from 'react-native';
 import {CustomHeader, NotificationHeader} from '../components';
 import {HomeStack} from './index';
 
-const Tab = createBottomTabNavigator<MainParamsList>();
+const Tab = createBottomTabNavigator<TabSParamsList>();
 
 const TabNavigators = () => {
   return (
@@ -24,19 +24,8 @@ const TabNavigators = () => {
       />
 
       <Tab.Navigator
-        initialRouteName="Home"
         screenOptions={({route}) => ({
           tabBarShowLabel: false,
-          tabBarStyle: {
-            display: 'flex',
-            height: 60,
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-          },
-          tabBarOptions: {
-            activeTintColor: '#5775CD',
-            inactiveTintColor: '#9094B8',
-          },
           header: () => <CustomHeader />,
           tabBarIcon: ({color, size}) => {
             let icon;
