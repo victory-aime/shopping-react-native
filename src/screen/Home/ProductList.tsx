@@ -15,7 +15,6 @@ const ProductList = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [showSecondHeader, setShowSecondHeader] = useState(false);
   const [productAddedKey, setProductAddedKey] = useState(0);
-  const [selectedItem, setSelectedItem] = useState(null);
   const [showProductUnderline, setShowProductUnderline] = useState(false);
 
   useEffect(() => {
@@ -26,6 +25,12 @@ const ProductList = () => {
       StatusBar.setBarStyle('dark-content');
       StatusBar.setBackgroundColor('transparent');
     }
+
+    // Cleanup function to reset status bar color when component unmounts
+    return () => {
+      StatusBar.setBarStyle('dark-content');
+      StatusBar.setBackgroundColor('transparent');
+    };
   }, [modalVisible]);
 
   const handlePercentIconPress = () => {
@@ -38,10 +43,7 @@ const ProductList = () => {
 
   const handleResetProductAdded = () => {
     setProductAddedKey(prevKey => prevKey + 1);
-    setSelectedItem(null);
-  };
-
-  const handleResetSecondHeader = () => {
+    setShowProductUnderline(false); // Reset showProductUnderline when resetting productAdded
     setShowSecondHeader(false);
   };
 
@@ -57,7 +59,6 @@ const ProductList = () => {
           <SelectProductHeader
             onClose={() => {
               handleResetProductAdded();
-              handleResetSecondHeader();
             }}
             onCheckPress={handleCheckPress}
           />
@@ -84,7 +85,12 @@ const ProductList = () => {
           )}
         </ScrollView>
 
-        <View style={styles.absoluteButtonContainer}>
+        <View
+          style={
+            showProductUnderline
+              ? styles.updatedButtonContainer
+              : styles.absoluteButtonContainer
+          }>
           <CustomButton
             textColor="#fff"
             icon={faPlus}
@@ -93,6 +99,20 @@ const ProductList = () => {
             New product
           </CustomButton>
         </View>
+
+        {showProductUnderline && (
+          <View>
+            <Text>Total price:</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={styles.titleStyle}>1 822 220 TMT</Text>
+              <Text style={styles.textQuantityStyles}>2 555 555 TMT</Text>
+            </View>
+            <CustomButton style={styles.button} textColor="white">
+              Continue
+            </CustomButton>
+          </View>
+        )}
+
         {modalVisible && <ModalOverlay />}
         <BottomModal visible={modalVisible} onClose={handleCloseModal} />
       </View>
@@ -110,14 +130,19 @@ const styles = StyleSheet.create({
   absoluteButtonContainer: {
     position: 'absolute',
     bottom: 40,
-    right: 20,
+    right: 10,
   },
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
-  textContainer: {
-    flex: 1,
+  totalContainer: {
+    position: 'absolute',
+    flexDirection: 'column',
+    backgroundColor: 'white',
+    bottom: 0,
+    right: 0,
+    left: 0,
   },
   titleStyle: {
     fontFamily: 'Inter',
@@ -125,6 +150,26 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     color: '#0B1527',
+  },
+  textQuantityStyles: {
+    padding: 10,
+    fontFamily: 'Inter',
+    fontSize: 14,
+    fontWeight: '400',
+    textDecorationLine: 'line-through',
+    textAlign: 'justify',
+    color: '#FF004B',
+  },
+  button: {
+    position: 'absolute',
+    bottom: 0,
+    right: 10,
+  },
+
+  updatedButtonContainer: {
+    position: 'absolute',
+    bottom: 70,
+    right: 10,
   },
 });
 
